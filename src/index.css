@@ -12,12 +12,34 @@ main {
 	padding: 25px;
 }
 .search-box {
-	margin: 0 auto;
-	width: 50%;
+	margin: 0 0 75px;
+	width: 100%;
 }
 
 .search-box .search-bar {
 	display: block;
 	width: 100%;
 	padding: 15px;
+	border-radius: 5px;
+}
+.location-box .location {
+	font-size: 32px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.location-box .date {
+	font-size: 20px;
+	font-weight: 300;
+	text-align: center;
+}
+.weather-box {
+	text-align: center;
+}
+.weather-box .temp {
+	position: relative;
+	display: inline-block;
+	margin: 30px auto;
+	font-weight: 300;
+	font-size: 100px;
 }
