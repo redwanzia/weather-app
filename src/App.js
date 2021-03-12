@@ -3,11 +3,10 @@ import axios from 'axios'
 
 function App() {
 	const [ query, setQuery ] = useState('');
-	const [ weather, setWeather ] = useState();
+  const [ weather, setWeather ] = useState([]);
+  const [title, setTitle] = useState('')
 
-	console.log(query);
-	const temperature = 0;
-	const StringLocation = 'Toronto';
+	
 
   const stringUrl = 'https://fathomless-falls-90637.herokuapp.com/https://www.metaweather.com/api/location/search/?query=';
   
@@ -27,9 +26,10 @@ function App() {
       axios.get(`${stringUrl}${query}`)
       .then(response=>{
         const result = response.data[0]
-        setWeather()
-        // console.log(result.woeid);
-            axios.get(`${locationUrl}${result.woeid}`)
+        setTitle(result.title)       
+        
+     
+        axios.get(`${locationUrl}${result.woeid}`)
         .then(res=>{
           const resultWoeid = res.data.consolidated_weather
           setWeather(resultWoeid)
@@ -41,7 +41,10 @@ function App() {
       
       
 		}
-	};
+  };
+  
+
+ 
 
 	const getDate = (d) => {
 		let months = [
@@ -81,22 +84,29 @@ function App() {
 					/>
 				</div>
 				<div className='location-box'>
-					<div className='location'>{query}</div>
+					<div className='location'>{title}</div>
 					<div className='date'>{getDate(new Date())}</div>
 				</div>
 				<div className='weather-box'>
           <div className='t'>
+           <h1>Five day Forecast</h1>
             {weather.map(el=>{
-              <ul>
-                <li>{el.the_temp}</li>
-              </ul>
-
-            })}
+                return(
+                  <div className='card'>
+                   
+                    <h2> Day:{el.applicable_date}</h2>
+                    <h2> Temperature :{el.the_temp}</h2>
+                    <h2> Minimum Temperature :{el.min_temp}</h2>
+                    <h2> Maximum Temperature :{el.max_temp}</h2>                  
+                  </div>
+                ) 
+              })}
           </div>
 				</div>
 			</main>
 		</div>
 	);
 }
+
 
 export default App;
