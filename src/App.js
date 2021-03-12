@@ -21,7 +21,6 @@ function App() {
 					const resultWoeid = res.data.consolidated_weather;
 					setWeather(resultWoeid);
 					setQuery('');
-					console.log(weather);
 				});
 			});
 		}
